@@ -1,0 +1,116 @@
+export const skills = [
+  {
+    title: 'Backend Engineering',
+    items: ['Java', 'Spring Boot', 'FastAPI', 'REST APIs', 'Microservices', 'OOP', 'JPA / Hibernate'],
+  },
+  {
+    title: 'Frontend & Web',
+    items: ['React', 'JavaScript', 'JSF', 'JSP', 'HTML', 'CSS', 'shadcn/ui'],
+  },
+  {
+    title: 'Data & Tooling',
+    items: ['PostgreSQL', 'MySQL', 'Oracle / Toad', 'Docker', 'Git & GitHub', 'Postman', 'Swagger'],
+  },
+]
+
+export const projects = [
+  {
+    number: '01',
+    title: 'Mini ERP System',
+    subtitle: 'Full-Stack Business Management Platform',
+    description: 'A unified platform for managing sales, purchasing, inventory, finance, and day-to-day business operations with clear, reliable data.',
+    images: [
+      '/projects/mini-erp.png',
+      '/projects/mini-erp-overview.png',
+      '/projects/mini-erp-products.png',
+      '/projects/mini-erp-suppliers.png',
+      '/projects/mini-erp-inventory.png',
+      '/projects/mini-erp-quotations.png',
+      '/projects/mini-erp-sales-orders.png',
+      '/projects/mini-erp-invoices.png',
+      '/projects/mini-erp-accounting.png',
+      '/projects/mini-erp-reports.png',
+      '/projects/mini-erp-roles.png',
+      '/projects/mini-erp-settings.png',
+    ],
+    imageAlt: 'Mini ERP business management platform dashboard',
+    technologies: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'shadcn/ui'],
+  },
+  {
+    number: '02',
+    title: 'Cartly',
+    subtitle: 'Full-Stack E-Commerce Platform',
+    description: 'A modern online shopping experience with product discovery, cart workflows, secure purchasing, and a responsive storefront.',
+    images: [
+      '/projects/cartly.png',
+      '/projects/cartly-products.png',
+      '/projects/cartly-cart.png',
+      '/projects/cartly-payment.png',
+      '/projects/cartly-orders.png',
+      '/projects/cartly-email.png',
+    ],
+    imageAlt: 'Cartly e-commerce storefront',
+    technologies: ['React', 'Python', 'FastAPI', 'Docker', 'PostgreSQL'],
+  },
+  {
+    number: '03',
+    title: 'SkyChain',
+    subtitle: 'Blockchain-Based E-Ticketing System',
+    description: 'A secure flight-booking platform that uses blockchain technology and smart contracts to protect and manage digital tickets.',
+    images: [
+      '/projects/skychain.png',
+      '/projects/skychain-flights-cards.png',
+      '/projects/skychain-flights-list.png',
+      '/projects/skychain-tickets.png',
+      '/projects/skychain-admin.png',
+      '/projects/skychain-airline-add.png',
+      '/projects/skychain-airline-flights.png',
+      '/projects/skychain-airline-bookings.png',
+      '/projects/skychain-change-requests.png',
+      '/projects/skychain-verification.png',
+      '/projects/skychain-integrity.png',
+    ],
+    imageAlt: 'SkyChain blockchain flight booking platform',
+    technologies: ['Node.js', 'REST APIs', 'Blockchain', 'Smart Contracts', 'SQL'],
+  },
+]
+
+export const experience = [
+  {
+    company: 'Ebtikar AI',
+    role: 'Full-Stack Web Development Trainee',
+    period: 'Jul 2026 — Present',
+    status: 'Current',
+    summary: 'Building an adaptable full-stack foundation where the technology stack is selected around each project rather than a single fixed language.',
+    points: [
+      'Working with React, Python, FastAPI, shadcn/ui, PostgreSQL, and Docker.',
+      'Testing and documenting APIs with Swagger.',
+      'Strengthening reusable engineering concepts across different languages and project types.',
+      'Preparing to integrate Agentic AI into current and future software projects.',
+    ],
+  },
+  {
+    company: 'Adaptive TechSoft (ATS)',
+    role: 'Java Web Development Trainee',
+    period: 'May 2026 — Jul 2026',
+    summary: 'Expanded from backend fundamentals into full-stack Java web development and database-driven enterprise applications.',
+    points: [
+      'Built backend logic using Java and JavaBeans.',
+      'Worked with JSP and JSF for frontend development.',
+      'Handled database-connected application workflows and service forwarding.',
+      'Used Oracle databases with Toad for database management and development tasks.',
+    ],
+  },
+  {
+    company: 'Acabes',
+    role: 'Backend Software Engineering Intern',
+    period: 'Sep 2025 — Jan 2026',
+    summary: 'Built a strong backend engineering foundation through practical projects focused on object-oriented design, APIs, and scalable architecture.',
+    points: [
+      'Applied OOP concepts through hands-on Java projects.',
+      'Built REST APIs using Spring Boot and microservices architecture.',
+      'Connected backend applications to MySQL databases.',
+      'Tested API behavior and endpoints using Postman.',
+    ],
+  },
+]
