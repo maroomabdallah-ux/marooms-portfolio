@@ -271,19 +271,20 @@ footer { border-top: 1px solid var(--line); }
   .project-description { margin-bottom: 18px; }
   .project-open-hint { width: 100%; margin-top: 22px; }
   .project-arrow { width: 36px; height: 36px; }
-  .project-lightbox { padding: 0; }
-  .project-lightbox-panel { width: 100%; max-width: 100%; height: 100dvh; border: 0; border-radius: 0; }
-  .project-lightbox-header { min-height: 72px; padding: 12px 64px 12px 16px; }
+  .project-lightbox { width: 100vw; max-width: 100vw; height: 100dvh; padding: 0; overflow: hidden; }
+  .project-lightbox-panel { position: fixed; inset: 0; width: auto; min-width: 0; max-width: none; height: auto; min-height: 0; max-height: none; border: 0; border-radius: 0; }
+  .project-lightbox-header { min-height: 72px; padding: max(12px, env(safe-area-inset-top)) 64px 12px 16px; }
   .project-lightbox-header h3 { font-size: 22px; }
   .project-lightbox-header .project-subtitle { max-width: calc(100vw - 90px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .project-lightbox-actions { right: 12px; gap: 0; }
   .project-lightbox-actions > span { display: none; }
-  .project-lightbox-stage { padding: 10px; }
-  .project-lightbox-image { max-width: 100%; }
+  .project-lightbox-stage { width: 100%; min-width: 0; max-width: 100%; padding: 10px; }
+  .project-lightbox-image { width: 100%; min-width: 0; max-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .project-lightbox-image img { position: static; inset: auto; width: 100%; max-width: 100%; height: 100%; max-height: 100%; flex: 0 1 auto; object-fit: contain; object-position: center; }
   .project-lightbox-controls { gap: 6px; margin-bottom: 9px; }
   .project-lightbox-control-buttons { width: 100%; gap: 8px; }
   .project-lightbox-controls button { min-height: 38px; flex: 1; padding: 0 10px; font-size: 12px; }
-  .project-lightbox-footer { padding: 9px 10px 8px; }
+  .project-lightbox-footer { padding: 9px 10px max(8px, env(safe-area-inset-bottom)); }
   .project-lightbox-thumbnails { gap: 7px; padding-bottom: 4px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
   .project-lightbox-thumbnails button { width: 72px; height: 48px; scroll-snap-align: start; }
   .timeline-item { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
