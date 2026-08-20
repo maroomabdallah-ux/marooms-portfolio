@@ -115,15 +115,15 @@ function ProjectLightbox({ project, onClose }) {
         </header>
 
         <div className="project-lightbox-stage">
-          {hasGallery
-            ? <button className="lightbox-nav-button" onClick={showPrevious} aria-label="Previous image"><ChevronLeft size={26} /></button>
-            : <span />}
           <div className="project-lightbox-image">
             <img src={project.images[activeImage]} alt={`${project.imageAlt} — image ${activeImage + 1} of ${project.images.length}`} />
+            {hasGallery && (
+              <>
+                <button className="lightbox-nav-button lightbox-nav-left" onClick={showPrevious} aria-label="Previous image"><ChevronLeft size={26} /></button>
+                <button className="lightbox-nav-button lightbox-nav-right" onClick={showNext} aria-label="Next image"><ChevronRight size={26} /></button>
+              </>
+            )}
           </div>
-          {hasGallery
-            ? <button className="lightbox-nav-button" onClick={showNext} aria-label="Next image"><ChevronRight size={26} /></button>
-            : <span />}
         </div>
 
         <footer className="project-lightbox-footer">
