@@ -117,16 +117,17 @@ function ProjectLightbox({ project, onClose }) {
         <div className="project-lightbox-stage">
           <div className="project-lightbox-image">
             <img src={project.images[activeImage]} alt={`${project.imageAlt} — image ${activeImage + 1} of ${project.images.length}`} />
-            {hasGallery && (
-              <>
-                <button className="lightbox-nav-button lightbox-nav-left" onClick={showPrevious} aria-label="Previous image"><ChevronLeft size={26} /></button>
-                <button className="lightbox-nav-button lightbox-nav-right" onClick={showNext} aria-label="Next image"><ChevronRight size={26} /></button>
-              </>
-            )}
           </div>
         </div>
 
         <footer className="project-lightbox-footer">
+          {hasGallery && (
+            <div className="project-lightbox-controls">
+              <button onClick={showPrevious} aria-label="Previous image"><ChevronLeft size={20} /> Previous</button>
+              <span>Image {activeImage + 1} of {project.images.length}</span>
+              <button onClick={showNext} aria-label="Next image">Next <ChevronRight size={20} /></button>
+            </div>
+          )}
           <div className="project-lightbox-thumbnails" aria-label="Project image selector">
             {project.images.map((image, index) => (
               <button key={image} className={index === activeImage ? 'active' : ''} onClick={() => setActiveImage(index)} aria-label={`Show image ${index + 1}`}>
