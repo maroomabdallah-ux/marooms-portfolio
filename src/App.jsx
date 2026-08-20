@@ -123,9 +123,11 @@ function ProjectLightbox({ project, onClose }) {
         <footer className="project-lightbox-footer">
           {hasGallery && (
             <div className="project-lightbox-controls">
-              <button onClick={showPrevious} aria-label="Previous image"><ChevronLeft size={20} /> Previous</button>
+              <div className="project-lightbox-control-buttons">
+                <button onClick={showPrevious} aria-label="Previous image"><ChevronLeft size={20} /> Previous</button>
+                <button onClick={showNext} aria-label="Next image">Next <ChevronRight size={20} /></button>
+              </div>
               <span>Image {activeImage + 1} of {project.images.length}</span>
-              <button onClick={showNext} aria-label="Next image">Next <ChevronRight size={20} /></button>
             </div>
           )}
           <div className="project-lightbox-thumbnails" aria-label="Project image selector">
