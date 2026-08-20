@@ -57,6 +57,7 @@ export const projects = [
     title: 'SkyChain',
     subtitle: 'Blockchain-Based E-Ticketing System',
     description: 'A secure flight-booking platform that uses blockchain technology and smart contracts to protect and manage digital tickets.',
+    coverImage: '/projects/skychain.png',
     images: [
       '/projects/skychain-login.png',
       '/projects/skychain-signup.png',

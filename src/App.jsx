@@ -58,7 +58,7 @@ function ProjectCard({ project, onOpen }) {
     >
       <div className="project-image-wrap">
         <img
-          src={project.images[0]}
+          src={project.coverImage ?? project.images[0]}
           alt={project.imageAlt}
           loading="lazy"
         />
