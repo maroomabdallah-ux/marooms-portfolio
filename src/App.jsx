@@ -41,7 +41,7 @@ function LinkedinIcon({ size = 18 }) {
   )
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, onOpen }) {
   const [activeImage, setActiveImage] = useState(0)
   const hasGallery = project.images.length > 1
 
@@ -54,7 +54,19 @@ function ProjectCard({ project }) {
   }
 
   return (
-    <article className="project-card">
+    <article
+      className="project-card"
+      onClick={() => onOpen(project)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onOpen(project)
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${project.title} project gallery`}
+    >
       <div className="project-image-wrap">
         <img
           src={project.images[activeImage]}
@@ -64,10 +76,10 @@ function ProjectCard({ project }) {
         <span className="project-number">{project.number}</span>
         {hasGallery && (
           <>
-            <button className="project-arrow project-arrow-left" onClick={showPrevious} aria-label={`Previous ${project.title} image`}>
+            <button className="project-arrow project-arrow-left" onClick={(event) => { event.stopPropagation(); showPrevious() }} aria-label={`Previous ${project.title} image`}>
               <ChevronLeft size={19} />
             </button>
-            <button className="project-arrow project-arrow-right" onClick={showNext} aria-label={`Next ${project.title} image`}>
+            <button className="project-arrow project-arrow-right" onClick={(event) => { event.stopPropagation(); showNext() }} aria-label={`Next ${project.title} image`}>
               <ChevronRight size={19} />
             </button>
             <div className="project-dots" aria-label={`${project.title} image selector`}>
@@ -75,7 +87,7 @@ function ProjectCard({ project }) {
                 <button
                   key={image}
                   className={index === activeImage ? 'active' : ''}
-                  onClick={() => setActiveImage(index)}
+                  onClick={(event) => { event.stopPropagation(); setActiveImage(index) }}
                   aria-label={`Show image ${index + 1}`}
                   aria-current={index === activeImage ? 'true' : undefined}
                 />
@@ -91,14 +103,77 @@ function ProjectCard({ project }) {
         <div className="project-tech" aria-label={`${project.title} technologies`}>
           {project.technologies.map((technology) => <Badge key={technology}>{technology}</Badge>)}
         </div>
+        <span className="project-open-hint">View project <ArrowUpRight size={15} /></span>
       </div>
     </article>
+  )
+}
+
+function ProjectLightbox({ project, onClose }) {
+  const [activeImage, setActiveImage] = useState(0)
+  const hasGallery = project.images.length > 1
+
+  const showPrevious = () => setActiveImage((current) => (current - 1 + project.images.length) % project.images.length)
+  const showNext = () => setActiveImage((current) => (current + 1) % project.images.length)
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+      if (event.key === 'ArrowLeft') showPrevious()
+      if (event.key === 'ArrowRight') showNext()
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [onClose, project.images.length])
+
+  return (
+    <div className="project-lightbox" role="dialog" aria-modal="true" aria-label={`${project.title} project gallery`} onMouseDown={onClose}>
+      <article className="project-lightbox-panel" onMouseDown={(event) => event.stopPropagation()}>
+        <header className="project-lightbox-header">
+          <div>
+            <p className="project-subtitle">{project.subtitle}</p>
+            <h3>{project.title}</h3>
+          </div>
+          <div className="project-lightbox-actions">
+            <span>{activeImage + 1} / {project.images.length}</span>
+            <button onClick={onClose} aria-label="Close project gallery"><X size={22} /></button>
+          </div>
+        </header>
+
+        <div className="project-lightbox-stage">
+          <img src={project.images[activeImage]} alt={`${project.imageAlt} — image ${activeImage + 1} of ${project.images.length}`} />
+          {hasGallery && (
+            <>
+              <button className="project-arrow project-arrow-left" onClick={showPrevious} aria-label="Previous image"><ChevronLeft size={24} /></button>
+              <button className="project-arrow project-arrow-right" onClick={showNext} aria-label="Next image"><ChevronRight size={24} /></button>
+            </>
+          )}
+        </div>
+
+        <footer className="project-lightbox-footer">
+          <div className="project-lightbox-thumbnails" aria-label="Project image selector">
+            {project.images.map((image, index) => (
+              <button key={image} className={index === activeImage ? 'active' : ''} onClick={() => setActiveImage(index)} aria-label={`Show image ${index + 1}`}>
+                <img src={image} alt="" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        </footer>
+      </article>
+    </div>
   )
 }
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [dark, setDark] = useState(false)
+  const [activeProject, setActiveProject] = useState(null)
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light'
@@ -276,7 +351,7 @@ function App() {
               <p className="section-note">A selection of full-stack systems built around real business and user needs.</p>
             </div>
             <div className="projects-grid">
-              {projects.map((project) => <ProjectCard project={project} key={project.number} />)}
+              {projects.map((project) => <ProjectCard project={project} onOpen={setActiveProject} key={project.number} />)}
             </div>
           </div>
         </section>
@@ -333,6 +408,7 @@ function App() {
           <p>Designed with intention. Built with React.</p>
         </div>
       </footer>
+      {activeProject && <ProjectLightbox project={activeProject} onClose={() => setActiveProject(null)} />}
     </div>
   )
 }
