@@ -42,17 +42,6 @@ function LinkedinIcon({ size = 18 }) {
 }
 
 function ProjectCard({ project, onOpen }) {
-  const [activeImage, setActiveImage] = useState(0)
-  const hasGallery = project.images.length > 1
-
-  const showPrevious = () => {
-    setActiveImage((current) => (current - 1 + project.images.length) % project.images.length)
-  }
-
-  const showNext = () => {
-    setActiveImage((current) => (current + 1) % project.images.length)
-  }
-
   return (
     <article
       className="project-card"
@@ -69,32 +58,11 @@ function ProjectCard({ project, onOpen }) {
     >
       <div className="project-image-wrap">
         <img
-          src={project.images[activeImage]}
-          alt={`${project.imageAlt} — image ${activeImage + 1} of ${project.images.length}`}
+          src={project.images[0]}
+          alt={project.imageAlt}
           loading="lazy"
         />
         <span className="project-number">{project.number}</span>
-        {hasGallery && (
-          <>
-            <button className="project-arrow project-arrow-left" onClick={(event) => { event.stopPropagation(); showPrevious() }} aria-label={`Previous ${project.title} image`}>
-              <ChevronLeft size={19} />
-            </button>
-            <button className="project-arrow project-arrow-right" onClick={(event) => { event.stopPropagation(); showNext() }} aria-label={`Next ${project.title} image`}>
-              <ChevronRight size={19} />
-            </button>
-            <div className="project-dots" aria-label={`${project.title} image selector`}>
-              {project.images.map((image, index) => (
-                <button
-                  key={image}
-                  className={index === activeImage ? 'active' : ''}
-                  onClick={(event) => { event.stopPropagation(); setActiveImage(index) }}
-                  aria-label={`Show image ${index + 1}`}
-                  aria-current={index === activeImage ? 'true' : undefined}
-                />
-              ))}
-            </div>
-          </>
-        )}
       </div>
       <div className="project-content">
         <p className="project-subtitle">{project.subtitle}</p>
@@ -103,7 +71,7 @@ function ProjectCard({ project, onOpen }) {
         <div className="project-tech" aria-label={`${project.title} technologies`}>
           {project.technologies.map((technology) => <Badge key={technology}>{technology}</Badge>)}
         </div>
-        <span className="project-open-hint">View project <ArrowUpRight size={15} /></span>
+        <span className="project-open-hint">View project <ArrowUpRight size={17} /></span>
       </div>
     </article>
   )

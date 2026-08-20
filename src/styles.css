@@ -154,16 +154,16 @@ h2 { font-size: clamp(38px, 4.3vw, 60px); line-height: 1.07; letter-spacing: -.0
 .project-arrow:hover { background: rgba(25,21,22,.9); transform: translateY(-50%) scale(1.05); }
 .project-arrow-left { left: 12px; right: auto; }
 .project-arrow-right { right: 12px; left: auto; }
-.project-dots { position: absolute; z-index: 2; left: 50%; bottom: 12px; display: flex; gap: 6px; padding: 7px 9px; border-radius: 999px; background: rgba(25,21,22,.62); backdrop-filter: blur(10px); transform: translateX(-50%); }
-.project-dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.48); transition: width .2s ease, background .2s ease; }
-.project-dots button.active { width: 18px; border-radius: 999px; background: #fff; }
 .project-content { padding: 42px 34px; display: flex; flex-direction: column; justify-content: center; }
 .project-subtitle { color: var(--accent); font-size: 12px; font-weight: 700; line-height: 1.5; margin-bottom: 9px; }
 .project-content h3 { font-size: 27px; letter-spacing: -.035em; margin-bottom: 13px; }
 .project-description { color: var(--muted); line-height: 1.7; font-size: 14px; margin-bottom: 22px; }
 .project-tech { display: flex; flex-wrap: wrap; gap: 7px; }
 .project-tech .badge { background: var(--surface-soft); font-size: 11px; }
-.project-open-hint { display: inline-flex; align-items: center; gap: 6px; width: fit-content; margin-top: 26px; color: var(--accent); font-size: 12px; font-weight: 700; }
+.project-open-hint { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: fit-content; min-height: 44px; margin-top: 28px; padding: 0 20px; border-radius: 999px; background: var(--accent-deep); color: var(--background); box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 28%, transparent); font-size: 13px; font-weight: 700; letter-spacing: .01em; transition: transform .22s ease, box-shadow .22s ease, background .22s ease; }
+.project-card:hover .project-open-hint { transform: translateY(-2px); background: var(--accent); box-shadow: 0 14px 32px color-mix(in srgb, var(--accent) 38%, transparent); }
+.project-open-hint svg { transition: transform .22s ease; }
+.project-card:hover .project-open-hint svg { transform: translate(2px, -2px); }
 
 .project-lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: rgba(20,16,17,.76); backdrop-filter: blur(14px); animation: lightbox-fade .2s ease both; }
 .project-lightbox-panel { width: min(1380px, 96vw); height: min(920px, 94vh); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 32px 100px rgba(0,0,0,.35); animation: lightbox-rise .25s ease both; }
