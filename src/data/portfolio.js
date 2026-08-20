@@ -59,6 +59,8 @@ export const projects = [
     description: 'A secure flight-booking platform that uses blockchain technology and smart contracts to protect and manage digital tickets.',
     images: [
       '/projects/skychain.png',
+      '/projects/skychain-login.png',
+      '/projects/skychain-signup.png',
       '/projects/skychain-flights-cards.png',
       '/projects/skychain-flights-list.png',
       '/projects/skychain-tickets.png',
@@ -67,7 +69,9 @@ export const projects = [
       '/projects/skychain-airline-flights.png',
       '/projects/skychain-airline-bookings.png',
       '/projects/skychain-change-requests.png',
+      '/projects/skychain-change-request-detail.png',
       '/projects/skychain-verification.png',
+      '/projects/skychain-verification-loading.png',
       '/projects/skychain-integrity.png',
     ],
     imageAlt: 'SkyChain blockchain flight booking platform',
